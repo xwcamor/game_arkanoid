@@ -1,0 +1,246 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a001a; /* Fondo oscuro morado/negro por defecto para el juego */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #e0e0e0; /* Color de texto claro por defecto para el juego */
+}
+
+/* Clase para cuando se muestra el login/registro */
+body.auth-visible {
+    background-image: url('imagenes/fondo_login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #333; /* Fallback si la imagen no carga */
+    display: flex; /* Para centrar el contenedor de auth */
+    flex-direction: column; /* Asegura que el encabezado esté arriba */
+    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+/* Contenedor para los formularios de login/registro para centrado */
+#contenedorAuth {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#encabezado {
+    width: 100%;
+    /* Gradiente morado neón estilo arcade */
+    background: linear-gradient(to bottom, #4a00e0, #8e2de2);
+    color: #fff; /* Texto blanco para contraste */
+    padding: 15px 0; /* Aumentamos padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: center;
+    border-bottom: 3px solid #ff00ff; /* Borde neón rosa/magenta */
+    box-shadow: 0 0 15px #ff00ff, 0 0 20px #ff00ff inset; /* Sombra para efecto neón */
+}
+
+#encabezado h1 {
+    margin: 0;
+    padding: 5px 0;
+    font-family: 'Arial Black', Gadget, sans-serif; /* Fuente más gruesa, considera una fuente pixel/arcade */
+    font-size: 2.5em; /* Tamaño más grande */
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 15px #ff00ff, /* Resplandor rosa */
+        0 0 20px #ff00ff;
+}
+
+#infoUsuario {
+    font-size: 0.9em;
+    position: absolute; /* Para colocarlo sin afectar el centrado del H1 */
+    right: 20px;
+    top: 15px; /* Ajustar según el padding del encabezado */
+}
+
+#infoUsuario a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+#infoUsuario a:hover {
+    text-decoration: underline;
+}
+
+#contenedorJuego {
+    display: flex;
+    margin-top: 20px;
+    border: 2px solid #333;
+}
+
+#lienzoJuego {
+    background-color: #000; /* Fallback si la imagen no carga */
+    display: block; /* Evita espacio extra debajo del canvas */
+    background-image: url('imagenes/fondo_juego.gif');
+    background-size: cover; /* O contain, según preferencia */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#controlesNivel {
+    width: 200px;
+    padding: 10px;
+    background-color: #eee;
+    border-left: 2px solid #333;
+    box-sizing: border-box;
+}
+
+#controlesNivel p {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+#botonesJuego {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#botonesJuego button {
+    background-color: #ff00ff; /* Magenta neón */
+    color: #ffffff;
+    border: 2px solid #fff;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    box-shadow:
+        0 0 5px #ff00ff,
+        0 0 10px #ff00ff inset;
+    transition: all 0.2s ease;
+}
+
+#botonesJuego button:hover {
+    background-color: #fff;
+    color: #ff00ff;
+    box-shadow:
+        0 0 10px #ff00ff,
+        0 0 15px #ff00ff inset,
+        0 0 20px #fff;
+}
+
+#botonesJuego button:active {
+    transform: scale(0.95);
+}
+
+#mensajesJuego {
+    margin-top: 15px;
+    font-size: 1.5em;
+    color: #d32f2f; /* Un color rojo para mensajes importantes */
+    text-align: center;
+    min-height: 30px; /* Para que no salte el layout */
+}
+
+/* Estilos para formularios (se verán más adelante) */
+.formulario-auth {
+    background-color: #4B0082; /* Morado Índigo (oscuro para contraste) */
+    padding: 30px; /* Un poco más de padding */
+    border-radius: 15px; /* Bordes más redondeados */
+    border: 3px solid #FF00FF; /* Borde fucsia brillante */
+    box-shadow: 0 0 10px #FF00FF, 0 0 20px #FF00FF, 0 0 35px #DA70D6, 
+                inset 0 0 8px rgba(255, 0, 255, 0.5),
+                inset 0 0 15px rgba(218, 112, 214, 0.4); /* Efecto neón para el borde y un ligero brillo interno */
+    margin-top: 30px;
+    width: 350px; /* Un poco más ancho */
+    color: #E6E6FA; /* Color de texto base Lavanda claro para contraste general dentro del cuadro */
+}
+
+.formulario-auth h2 { /* "Iniciar Sesión" */
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.2em; /* Un poco más grande */
+    color: #FFF; /* Texto blanco para que el neón resalte más */
+    text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 15px #FF00FF, 0 0 20px #DA70D6, 0 0 25px #DA70D6; /* Neón violeta/fucsia intenso */
+}
+
+.formulario-auth label { /* "Nombre de Usuario:", "Contraseña:" */
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #DA70D6; /* Violeta (Orchid) */
+    text-shadow: 0 0 3px #FF00FF, 0 0 5px #FF00FF, 0 0 8px #DA70D6; /* Neón más sutil */
+}
+
+.formulario-auth input[type="text"],
+.formulario-auth input[type="password"],
+.formulario-auth input[type="email"] {
+    width: calc(100% - 24px); /* Ajustar por padding y borde */
+    padding: 12px;
+    margin-bottom: 20px;
+    background-color: #2E0854; /* Morado muy oscuro para fondo de input */
+    color: #E6E6FA; /* Texto Lavanda claro para contraste */
+    border: 1px solid #9400D3; /* Borde violeta oscuro */
+    border-radius: 5px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.3); /* Sombra interna sutil */
+}
+
+.formulario-auth input[type="text"]:focus,
+.formulario-auth input[type="password"]:focus,
+.formulario-auth input[type="email"]:focus {
+    outline: none;
+    border-color: #FF00FF; /* Borde fucsia al enfocar */
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.3), 0 0 10px #FF00FF; /* Resplandor neón al enfocar */
+}
+
+.formulario-auth button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to bottom, #8e2de2, #4a00e0); /* Gradiente morado similar al header */
+    color: white;
+    border: 2px solid #FF00FF; /* Borde neón */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-shadow: 0 0 5px #FFF, 0 0 8px #FF00FF; /* Ligero resplandor al texto del botón */
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px #FF00FF, inset 0 0 5px rgba(255,255,255,0.3);
+}
+
+.formulario-auth button:hover {
+    background: linear-gradient(to bottom, #4a00e0, #8e2de2); /* Invertir gradiente */
+    box-shadow: 0 0 15px #FF00FF, 0 0 25px #DA70D6, inset 0 0 8px rgba(255,255,255,0.4);
+    transform: translateY(-2px); /* Ligero levantamiento */
+}
+
+.formulario-auth button:active {
+    transform: translateY(0px);
+    box-shadow: 0 0 5px #FF00FF, inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.enlace-formulario p { /* "¿No tienes una cuenta?" */
+    text-align: center;
+    margin-top: 20px;
+    color: #DA70D6; /* Violeta (Orchid) para el texto */
+    text-shadow: 0 0 3px #FF00FF, 0 0 5px #DA70D6; /* Neón sutil */
+}
+
+.enlace-formulario a { /* "Regístrate aquí" */
+    color: #FF69B4; /* Rosa fuerte para el enlace, para diferenciarlo un poco */
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: 0 0 3px #FF00FF, 0 0 5px #FF69B4; /* Neón */
+}
+
+.enlace-formulario a:hover {
+    color: #FFF;
+    text-decoration: underline;
+    text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 15px #FF69B4; /* Neón más intenso al pasar el mouse */
+} 
